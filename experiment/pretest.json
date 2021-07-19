@@ -1,18 +1,28 @@
 [
-{"question":"This is a Sample Question 1?",
+{"question":"ECB stands for",
 "answers":{
-            "a":"answer1",
-            "b":"answer2",
-            "c":"answer3",
-            "d":"answer4"
+            "a":"Electronic cipher Block",
+            "b":"Electronic code Block",
+            "c":"Electronic code Book",
+            "d":"Electronic cipher Book"
           },
-"correctAnswer":"a"},
-{"question":"This is a Sample Question 2?",
+"correctAnswer":""},
+
+{"question":"Which among the following is not CPA secure?",
 "answers":{
-            "a":"answer1",
-            "b":"answer2",
-            "c":"answer3",
-            "d":"answer4"
+            "a":"ECB",
+            "b":"CBC",
+            "c":"CFB",
+            "d":"None"
           },
-"correctAnswer":"c"} 
+"correctAnswer":""}, 
+
+{"question":"Which of the following are block ciphers?",
+"answers":{
+            "a":"ECB",
+            "b":"CBC",
+            "c":"CFB",
+            "d":"All"
+          },
+"correctAnswer":"" }
 ]
