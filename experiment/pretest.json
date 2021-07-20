@@ -1,5 +1,5 @@
 [
-{"question":"ECB stands for",
+{"question":"1. ECB stands for",
 "answers":{
             "a":"Electronic cipher Block",
             "b":"Electronic code Block",
@@ -8,7 +8,7 @@
           },
 "correctAnswer":""},
 
-{"question":"Which among the following is not CPA secure?",
+{"question":"2. Which among the following is not CPA secure?",
 "answers":{
             "a":"ECB",
             "b":"CBC",
@@ -17,7 +17,7 @@
           },
 "correctAnswer":""}, 
 
-{"question":"Which of the following are block ciphers?",
+{"question":"3. Which of the following are block ciphers?",
 "answers":{
             "a":"ECB",
             "b":"CBC",
@@ -25,4 +25,5 @@
             "d":"All"
           },
 "correctAnswer":"" }
+
 ]
