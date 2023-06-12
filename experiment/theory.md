@@ -2,6 +2,7 @@ For a very brief theory of "Advanced Encryption Standard" and their analysis, cl
 
 For a very brief theory of "Modes of Encryption" and their analysis, click here](docs/Modes-of-operation.pdf)
 
+     
 <img src="images/ecbm.png">
 
    Electronic Code Book(ECB) mode
@@ -15,7 +16,6 @@ For a very brief theory of "Modes of Encryption" and their analysis, click here]
 <img src="images/ctr.png">
 
    Contur mode
-
 
 <img src="images/ofbm.png">
 
