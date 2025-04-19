@@ -1,94 +1,126 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+  <head>
+    <!-- Add CSS at the head of HTML file -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!-- Your code goes here-->
 
-<p><b>PART I</b></p>
-                            <form name="aestest">
-                                <p>Choose your mode of operation:
-                                    <select id="select_mode" name="select_mode" onchange="selectMode();" size="1">
-                                        <option selected="selected" value="ecb">Electronic Code Book (ECB)</option>
-                                        <option value="cbc">Cipher Block Chaining</option>
-                                        <option value="ofb">Output Feedback</option>
-                                        <option value="ctr">Counter mode</option>
-                                    </select>
-                                </p>
-                                <hr/>
-                                <p><b>PART II</b></p>
-                                <p></p><pre>Key size in bits: <select id="keySize" name="keySize"><option selected="selected" value="128">128</option><option value="192">192</option><option value="256">256</option></select></pre>
-                                <p></p>
-                                Plaintext:
-                                <textarea cols="50" id="plainarea" name="plainarea" readonly="readonly" rows="6"></textarea>
-                                <input name="changePlainText" onclick="nextPlainText()" type="button" value="Next Plaintext"/> Key:
-                                <textarea cols="50" id="keyarea" name="keyarea" readonly="readonly" rows="1"></textarea>
-                                <input name="changeKey" onclick="nextKey()" type="button" value="Next Keytext"/>
-                                <div id="ivtext">
-                                    IV:
-                                    <textarea cols="50" id="iv" name="iv" readonly="readonly" rows="1"></textarea>
-                                    <input name="changeIV" onclick="nextIV()" type="button" value="Next IV"/> </div>
-                                <div id="ctrtext">
-                                    CTR:
-                                    <textarea cols="50" id="ctr" name="ctr" readonly="readonly" rows="1"></textarea>
-                                    <input name="changeCTR" onclick="nextCTR()" type="button" value="Next CTR"/> </div>
-                                <div id="calculateXor">
-                                    <hr/>
-                                    <p><b>PART III</b></p>
-                                    <p>Calculate XOR:</p><pre><textarea cols="50" id="num1" name="num1" rows="1"></textarea>
+    <p><b>PART I</b></p>
+    <form name="aestest">
+      <p>
+        Choose your mode of operation:
+        <select
+          id="select_mode"
+          name="select_mode"
+          onchange="selectMode();"
+          size="1"
+        >
+          <option selected="selected" value="ecb">
+            Electronic Code Book (ECB)
+          </option>
+          <option value="cbc">Cipher Block Chaining</option>
+          <option value="ofb">Output Feedback</option>
+          <option value="ctr">Counter mode</option>
+        </select>
+      </p>
+      <hr />
+      <p><b>PART II</b></p>
+      <p></p>
+      <pre>Key size in bits: <select id="keySize" name="keySize"><option selected="selected" value="128">128</option><option value="192">192</option><option value="256">256</option></select></pre>
+      <p></p>
+      Plaintext:
+      <textarea cols="50" id="plainarea" name="plainarea" rows="6"></textarea>
+      <input
+        name="changePlainText"
+        onclick="nextPlainText()"
+        type="button"
+        value="Next Plaintext"
+      />
+      Key:
+      <textarea cols="50" id="keyarea" name="keyarea" rows="1"></textarea>
+      <input
+        name="changeKey"
+        onclick="nextKey()"
+        type="button"
+        value="Next Keytext"
+      />
+      <div id="ivtext">
+        IV:
+        <textarea cols="50" id="iv" name="iv" rows="1"></textarea>
+        <input
+          name="changeIV"
+          onclick="nextIV()"
+          type="button"
+          value="Next IV"
+        />
+      </div>
+      <div id="ctrtext">
+        CTR:
+        <textarea cols="50" id="ctr" name="ctr" rows="1"></textarea>
+        <input
+          name="changeCTR"
+          onclick="nextCTR()"
+          type="button"
+          value="Next CTR"
+        />
+      </div>
+      <div id="calculateXor">
+        <hr />
+        <p><b>PART III</b></p>
+        <p>Calculate XOR:</p>
+        <pre><textarea cols="50" id="num1" name="num1" rows="1"></textarea>
      <textarea cols="50" id="num2" name="num2" rows="1"></textarea> <input name="calculateXOR" onclick="displayXOR()" type="button" value="Calculate XOR"/>
-<p>XOR: <textarea cols="50" id="xor" name="xor" readonly="readonly" rows="1"></textarea></p></pre>
-                                    <p></p>
-                                </div>
-                                <hr/>
-                                <p><b>PART IV</b></p>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Key in hex: </td>
-                                            <td>
-                                                <input name="key" size="66" type="text"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Plaintext in hex: </td>
-                                            <td>
-                                                <input name="plaintext" size="66" type="text"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ciphertext in hex: </td>
-                                            <td>
-                                                <input name="ciphertext" size="66" type="text"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> </td>
-                                            <td>
-                                                <input onclick="doEncryption()" type="button" value="Encrypt"/>
-                                                <input onclick="doDecryption()" type="button" value="Decrypt"/>
-                                                <input type="reset" value="Clear"/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </form>
-                            <hr/>
-                            <p><b>PART V</b></p>
-                            <p>Enter your answer here:</p>
-                            <p>
-                                <input id="userans" size="65" type="text"/>
-                                <input onclick="checkAnswer();" type="button" value="Check Answer!"/>
-                            </p>
+<p>XOR: <textarea cols="50" id="xor" name="xor" rows="1"></textarea></p></pre>
+        <p></p>
+      </div>
+      <hr />
+      <p><b>PART IV</b></p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Key in hex:</td>
+            <td>
+              <input name="key" size="66" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <td>Plaintext in hex:</td>
+            <td>
+              <input name="plaintext" size="66" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <td>Ciphertext in hex:</td>
+            <td>
+              <input name="ciphertext" size="66" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <input onclick="doEncryption()" type="button" value="Encrypt" />
+              <input onclick="doDecryption()" type="button" value="Decrypt" />
+              <input type="reset" value="Clear" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <hr />
+    <p><b>PART V</b></p>
+    <p>Enter your answer here:</p>
+    <p>
+      <input id="userans" size="65" type="text" />
+      <input onclick="checkAnswer();" type="button" value="Check Answer!" />
+    </p>
+    <div id="notification" style="color: green; font-weight: bold"></div>
 
-
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="js/aes-enc.js" type="application/javascript"></script>
-        <script src="js/aes-dec.js" type="application/javascript"></script>
-        <script src="js/aes-test.js" type="application/javascript"></script>
-        <script src="js/aes.js" type="application/javascript"></script>
-
-</body>
+    <!-- Add JS at the bottom of HTML file -->
+    <script src="js/aes-enc.js" type="application/javascript"></script>
+    <script src="js/aes-dec.js" type="application/javascript"></script>
+    <script src="js/aes-test.js" type="application/javascript"></script>
+    <script src="js/aes.js" type="application/javascript"></script>
+  </body>
 </html>
