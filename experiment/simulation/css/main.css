@@ -1,1 +1,104 @@
-/* You CSS goes in here */
+/* Alert warning styling */
+.alert-warning {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 18px auto 18px auto;
+  color: #b26a00;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  padding: 12px 18px;
+  max-width: 600px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
+  font-size: 14px;
+}
+.container {
+  background: #fff;
+}
+h1 {
+  color: #1a237e;
+}
+label {
+  font-weight: bold;
+  /* Main header */
+  margin-top: 12px;
+  display: block;
+}
+
+/* Details section below header */
+.case-details {
+  font-size: 0.95em;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.1em;
+}
+select,
+input,
+textarea {
+  margin: 12px 0 20px 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 60%;
+  max-width: 480px;
+  min-width: 220px;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: auto;
+  min-height: 32px;
+  margin-bottom: 12px;
+}
+/* Alternating block backgrounds for sections after <hr> */
+.alt-block {
+  background: #f3f4f6;
+  padding: 16px 0;
+}
+/* Responsive styles for small screens - moved to end for specificity */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 13px !important;
+  }
+  h2 {
+    font-size: 0.85em !important;
+  }
+  .result {
+    font-size: 0.85em !important;
+    word-break: break-word;
+  }
+  .case-details {
+    font-size: 0.85em !important;
+  }
+  /* Do NOT change label font size */
+  .container input,
+  .container select,
+  .container textarea,
+  #caseSelect {
+    width: 100% !important;
+    font-size: 1.3em !important;
+    box-sizing: border-box !important;
+    padding: 24px 16px !important;
+    margin-bottom: 18px !important;
+    border-radius: 16px !important;
+    min-height: 48px !important;
+    display: block !important;
+  }
+  .container button {
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 18px !important;
+    font-size: 1.2em !important;
+    padding: 24px 0 !important;
+    min-height: 54px !important;
+    border-radius: 16px !important;
+    margin-top: 0 !important;
+    clear: both !important;
+  }
