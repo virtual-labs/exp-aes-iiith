@@ -1,126 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css" />
+    <meta charset="UTF-8" />
+    <title>AES Simulation Demo</title>
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <!-- Your code goes here-->
-
-    <p><b>PART I</b></p>
-    <form name="aestest">
-      <p>
-        Choose your mode of operation:
-        <select
-          id="select_mode"
-          name="select_mode"
-          onchange="selectMode();"
-          size="1"
-        >
-          <option selected="selected" value="ecb">
-            Electronic Code Book (ECB)
-          </option>
-          <option value="cbc">Cipher Block Chaining</option>
-          <option value="ofb">Output Feedback</option>
-          <option value="ctr">Counter mode</option>
-        </select>
-      </p>
-      <hr />
-      <p><b>PART II</b></p>
-      <p></p>
-      <pre>Key size in bits: <select id="keySize" name="keySize"><option selected="selected" value="128">128</option><option value="192">192</option><option value="256">256</option></select></pre>
-      <p></p>
-      Plaintext:
-      <textarea cols="50" id="plainarea" name="plainarea" rows="6"></textarea>
-      <input
-        name="changePlainText"
-        onclick="nextPlainText()"
-        type="button"
-        value="Next Plaintext"
-      />
-      Key:
-      <textarea cols="50" id="keyarea" name="keyarea" rows="1"></textarea>
-      <input
-        name="changeKey"
-        onclick="nextKey()"
-        type="button"
-        value="Next Keytext"
-      />
-      <div id="ivtext">
-        IV:
-        <textarea cols="50" id="iv" name="iv" rows="1"></textarea>
-        <input
-          name="changeIV"
-          onclick="nextIV()"
-          type="button"
-          value="Next IV"
-        />
-      </div>
-      <div id="ctrtext">
-        CTR:
-        <textarea cols="50" id="ctr" name="ctr" rows="1"></textarea>
-        <input
-          name="changeCTR"
-          onclick="nextCTR()"
-          type="button"
-          value="Next CTR"
-        />
-      </div>
-      <div id="calculateXor">
-        <hr />
-        <p><b>PART III</b></p>
-        <p>Calculate XOR:</p>
-        <pre><textarea cols="50" id="num1" name="num1" rows="1"></textarea>
-     <textarea cols="50" id="num2" name="num2" rows="1"></textarea> <input name="calculateXOR" onclick="displayXOR()" type="button" value="Calculate XOR"/>
-<p>XOR: <textarea cols="50" id="xor" name="xor" rows="1"></textarea></p></pre>
-        <p></p>
-      </div>
-      <hr />
-      <p><b>PART IV</b></p>
-      <table>
-        <tbody>
-          <tr>
-            <td>Key in hex:</td>
-            <td>
-              <input name="key" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>Plaintext in hex:</td>
-            <td>
-              <input name="plaintext" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>Ciphertext in hex:</td>
-            <td>
-              <input name="ciphertext" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input onclick="doEncryption()" type="button" value="Encrypt" />
-              <input onclick="doDecryption()" type="button" value="Decrypt" />
-              <input type="reset" value="Clear" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+    <div class="alert-warning">
+      This simulation is optimized for desktop view. For best experience on
+      smaller screens, please use landscape (horizontal) orientation.
+    </div>
     <hr />
-    <p><b>PART V</b></p>
-    <p>Enter your answer here:</p>
-    <p>
-      <input id="userans" size="65" type="text" />
-      <input onclick="checkAnswer();" type="button" value="Check Answer!" />
-    </p>
-    <div id="notification" style="color: green; font-weight: bold"></div>
+    <label for="caseSelect">Select Test Case:</label>
+    <select id="caseSelect"></select>
+    <div id="caseDetails"></div>
 
-    <!-- Add JS at the bottom of HTML file -->
-    <script src="js/aes-enc.js" type="application/javascript"></script>
-    <script src="js/aes-dec.js" type="application/javascript"></script>
-    <script src="js/aes-test.js" type="application/javascript"></script>
-    <script src="js/aes.js" type="application/javascript"></script>
+    <!-- PART I: Key Size and Mode -->
+    <hr />
+    <h2>Part I: Key Size and Mode</h2>
+    <label for="userKeySize">Key Size (bits):</label>
+    <input type="text" id="userKeySize" placeholder="e.g. 128" size="40" />
+    <button id="correctKeySize">Check your answer</button>
+    <div id="keySizeResult" class="result"></div>
+    <label for="userMode">Mode:</label>
+    <input type="text" id="userMode" placeholder="e.g. CBC" size="40" />
+    <button id="correctMode">Check your answer</button>
+    <div id="modeResult" class="result"></div>
+
+    <!-- PART II: Key and IV/CTR -->
+    <hr />
+    <h2>Part II: Key and IV/CTR</h2>
+    <label for="userKey">Key (hex):</label>
+    <input type="text" id="userKey" placeholder="Enter key in hex" size="70" />
+    <button id="correctKey">Check your answer</button>
+    <div id="keyResult" class="result"></div>
+    <div id="ivSection">
+      <label for="userIV">IV (hex):</label>
+      <input type="text" id="userIV" placeholder="Enter IV in hex" size="70" />
+      <button id="correctIV">Check your answer</button>
+      <div id="ivResult" class="result"></div>
+    </div>
+    <div id="ctrSection">
+      <label for="userCTR">CTR (hex):</label>
+      <input
+        type="text"
+        id="userCTR"
+        placeholder="Enter CTR in hex"
+        size="70"
+      />
+      <button id="correctCTR">Check your answer</button>
+      <div id="ctrResult" class="result"></div>
+    </div>
+
+    <!-- PART III: Plaintext (and XOR if needed) -->
+    <hr />
+    <h2>Part III: Plaintext</h2>
+    <label for="userPlaintext">Plaintext:</label>
+    <input
+      type="text"
+      id="userPlaintext"
+      placeholder="Enter plaintext"
+      size="100"
+    />
+    <button id="correctPlaintext">Check your answer</button>
+    <div id="plaintextResult" class="result"></div>
+
+    <!-- PART IV: Plaintext Hex (and padding if needed) -->
+    <hr />
+    <h2>Part IV: Plaintext Hex</h2>
+    <label for="userPlaintextHex">Plaintext (hex, padded):</label>
+    <input
+      type="text"
+      id="userPlaintextHex"
+      placeholder="Enter padded plaintext in hex"
+      size="120"
+    />
+    <button id="correctPlaintextHex">Check your answer</button>
+    <div id="plaintextHexResult" class="result"></div>
+
+    <!-- PART V: Ciphertext -->
+    <hr />
+    <h2>Part V: Ciphertext</h2>
+    <label for="userCipher">Ciphertext (hex):</label>
+    <input
+      type="text"
+      id="userCipher"
+      placeholder="Enter ciphertext in hex"
+      size="120"
+    />
+    <button id="checkBtn">Check Answer</button>
+    <button id="correctCipher">Check your answer</button>
+    <div class="result" id="result"></div>
+    <script src="js/main.js"></script>
   </body>
 </html>

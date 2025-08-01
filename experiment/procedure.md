@@ -1,12 +1,13 @@
-**Step I :** Choose a mode of operation from **PART I**
+**Step 1:** Select a test case from the dropdown at the top of the simulation.
 
-**Step II :** Select KeySize, Plaintext, KeyText, Intialization vector(IV)(for ECB and OFB modes only) and CTR(forctr mode only) in **PART II**
+**Step 2:** In **Part I**, enter the key size and mode of operation as shown in the test case details.
 
-**Step III :** Whenever necessay use XOR opeartion in **PART III** in accordance with choosen mode of operation
+**Step 3:** In **Part II**, enter the key (hex), IV (hex) or CTR (hex) as required by the selected mode.
 
-**Step IV :** Use fuction **FK** and "Key in hex:" field in **PART IV** should be filled keytext generated in **Step2**
+**Step 4:** In **Part III**, enter the plaintext value.
 
-**Step V :** Fill "Plaintext in hex:" field with approriate value in accordance with choosen mode of operation and click on encrypt button
+**Step 5:** In **Part IV**, enter the plaintext in hex (padded as needed).
 
-**Step VI :** Enter your answer in **PART V** to check your ciphertext
+**Step 6:** In **Part V**, enter the ciphertext (hex) to check your answer.
 
+**Note:** For each part, click the "Check your answer" button to validate your input and receive feedback. Use the details and hints provided for each test case to guide your entries.
