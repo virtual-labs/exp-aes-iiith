@@ -1,13 +1,41 @@
-**Step 1:** Select a test case from the dropdown at the top of the simulation.
+**Step 1: Select Test Case**
 
-**Step 2:** In **Part I**, enter the key size and mode of operation as shown in the test case details.
+- Choose a test case from the dropdown menu at the top of the simulation
+- Review the test case details that appear, including plaintext, key, IV (if applicable), mode, and key size
+- Each test case represents a different AES encryption scenario with varying parameters
 
-**Step 3:** In **Part II**, enter the key (hex), IV (hex) or CTR (hex) as required by the selected mode.
+**Step 2: Key Size and Mode Configuration (Part I)**
 
-**Step 4:** In **Part III**, enter the plaintext value.
+- Enter the **Key Size (bits)** for the selected test case (e.g., 128, 192, or 256)
+- Enter the **Mode** of operation (e.g., CBC, ECB, CFB, OFB, CTR)
+- Click "Check your answer" to validate your entries
+- Understanding: Key size determines the strength of encryption, while mode affects how blocks are processed
 
-**Step 5:** In **Part IV**, enter the plaintext in hex (padded as needed).
+**Step 3: Encryption Parameters (Part II)**
 
-**Step 6:** In **Part V**, enter the ciphertext (hex) to check your answer.
+- Enter the **Key (hex)** - the secret key used for encryption/decryption
+- Enter the **IV (hex)** for modes that require initialization vectors (CBC, CFB, OFB, CTR)
+- Enter the **CTR (hex)** for Counter mode if applicable
+- Click "Check your answer" for each parameter to validate
+- Note: Some modes like ECB don't require IV/CTR values
 
-**Note:** For each part, click the "Check your answer" button to validate your input and receive feedback. Use the details and hints provided for each test case to guide your entries.
+**Step 4: Plaintext Input (Part III)**
+
+- Enter the **Plaintext** message that will be encrypted
+- This is the original readable message before encryption
+- Click "Check your answer" to validate the plaintext entry
+- Understanding: This represents the sensitive data that needs to be protected
+
+**Step 5: Hexadecimal Conversion (Part IV)**
+
+- Enter the **Plaintext (hex, padded)** - the plaintext converted to hexadecimal format
+- Include proper padding to ensure the data fits into complete AES blocks (16 bytes)
+- Click "Check your answer" to validate the hex conversion
+- Understanding: AES operates on fixed-size blocks, requiring proper padding
+
+**Step 6: Final Encryption Result (Part V)**
+
+- Enter the **Ciphertext (hex)** - the final encrypted output in hexadecimal format
+- This represents the encrypted data that can be safely transmitted or stored
+- Use either "Check Answer" or "Check your answer" button to validate
+- Understanding: This is the protected form of your original message

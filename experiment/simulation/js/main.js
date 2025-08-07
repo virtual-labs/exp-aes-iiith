@@ -19,15 +19,19 @@ fetch("json/aes-dataset.json")
       const idx = select.value;
       const c = window.aesCases[idx];
       const user = document.getElementById("userKeySize").value.trim();
+      const inputField = document.getElementById("userKeySize");
+      const resultDiv = document.getElementById("keySizeResult");
+
       if (user == c.keySize.toString()) {
-        document.getElementById("keySizeResult").textContent = "Correct!";
-        document.getElementById("keySizeResult").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "keySizeResult"
-        ).textContent = `Correct answer: ${c.keySize}`;
-        document.getElementById("keySizeResult").style.color = "blue";
-        document.getElementById("userKeySize").value = c.keySize;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.keySize}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
     document.getElementById("correctMode").onclick = function () {
@@ -37,15 +41,19 @@ fetch("json/aes-dataset.json")
         .getElementById("userMode")
         .value.trim()
         .toUpperCase();
+      const inputField = document.getElementById("userMode");
+      const resultDiv = document.getElementById("modeResult");
+
       if (user === c.mode.toUpperCase()) {
-        document.getElementById("modeResult").textContent = "Correct!";
-        document.getElementById("modeResult").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "modeResult"
-        ).textContent = `Correct answer: ${c.mode}`;
-        document.getElementById("modeResult").style.color = "blue";
-        document.getElementById("userMode").value = c.mode;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.mode}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
     document.getElementById("correctKey").onclick = function () {
@@ -55,15 +63,19 @@ fetch("json/aes-dataset.json")
         .getElementById("userKey")
         .value.trim()
         .toLowerCase();
+      const inputField = document.getElementById("userKey");
+      const resultDiv = document.getElementById("keyResult");
+
       if (user === c.key.toLowerCase()) {
-        document.getElementById("keyResult").textContent = "Correct!";
-        document.getElementById("keyResult").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "keyResult"
-        ).textContent = `Correct answer: ${c.key}`;
-        document.getElementById("keyResult").style.color = "blue";
-        document.getElementById("userKey").value = c.key;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.key}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
     if (document.getElementById("correctIV")) {
@@ -74,19 +86,24 @@ fetch("json/aes-dataset.json")
           .getElementById("userIV")
           .value.trim()
           .toLowerCase();
+        const inputField = document.getElementById("userIV");
+        const resultDiv = document.getElementById("ivResult");
+
         if ((c.iv || "") === "") {
-          document.getElementById("ivResult").textContent =
-            "Not required for this mode.";
-          document.getElementById("ivResult").style.color = "gray";
+          resultDiv.textContent = "Not required for this mode.";
+          resultDiv.style.color = "gray";
+          inputField.style.borderColor = "";
+          inputField.style.color = "";
         } else if (user === c.iv.toLowerCase()) {
-          document.getElementById("ivResult").textContent = "Correct!";
-          document.getElementById("ivResult").style.color = "green";
+          resultDiv.textContent = "Correct!";
+          resultDiv.style.color = "green";
+          inputField.style.borderColor = "#28a745";
+          inputField.style.color = "";
         } else {
-          document.getElementById(
-            "ivResult"
-          ).textContent = `Correct answer: ${c.iv}`;
-          document.getElementById("ivResult").style.color = "blue";
-          document.getElementById("userIV").value = c.iv;
+          resultDiv.textContent = `Incorrect! The correct answer is - '${c.iv}'`;
+          resultDiv.style.color = "red";
+          inputField.style.borderColor = "red";
+          inputField.style.color = "red";
         }
       };
     }
@@ -98,19 +115,24 @@ fetch("json/aes-dataset.json")
           .getElementById("userCTR")
           .value.trim()
           .toLowerCase();
+        const inputField = document.getElementById("userCTR");
+        const resultDiv = document.getElementById("ctrResult");
+
         if ((c.ctr || "") === "") {
-          document.getElementById("ctrResult").textContent =
-            "Not required for this mode.";
-          document.getElementById("ctrResult").style.color = "gray";
+          resultDiv.textContent = "Not required for this mode.";
+          resultDiv.style.color = "gray";
+          inputField.style.borderColor = "";
+          inputField.style.color = "";
         } else if (user === c.ctr.toLowerCase()) {
-          document.getElementById("ctrResult").textContent = "Correct!";
-          document.getElementById("ctrResult").style.color = "green";
+          resultDiv.textContent = "Correct!";
+          resultDiv.style.color = "green";
+          inputField.style.borderColor = "#28a745";
+          inputField.style.color = "";
         } else {
-          document.getElementById(
-            "ctrResult"
-          ).textContent = `Correct answer: ${c.ctr}`;
-          document.getElementById("ctrResult").style.color = "blue";
-          document.getElementById("userCTR").value = c.ctr;
+          resultDiv.textContent = `Incorrect! The correct answer is - '${c.ctr}'`;
+          resultDiv.style.color = "red";
+          inputField.style.borderColor = "red";
+          inputField.style.color = "red";
         }
       };
     }
@@ -118,15 +140,19 @@ fetch("json/aes-dataset.json")
       const idx = select.value;
       const c = window.aesCases[idx];
       const user = document.getElementById("userPlaintext").value.trim();
+      const inputField = document.getElementById("userPlaintext");
+      const resultDiv = document.getElementById("plaintextResult");
+
       if (user === c.plaintext) {
-        document.getElementById("plaintextResult").textContent = "Correct!";
-        document.getElementById("plaintextResult").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "plaintextResult"
-        ).textContent = `Correct answer: ${c.plaintext}`;
-        document.getElementById("plaintextResult").style.color = "blue";
-        document.getElementById("userPlaintext").value = c.plaintext;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.plaintext}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
     document.getElementById("correctPlaintextHex").onclick = function () {
@@ -136,16 +162,19 @@ fetch("json/aes-dataset.json")
         .getElementById("userPlaintextHex")
         .value.trim()
         .toLowerCase();
+      const inputField = document.getElementById("userPlaintextHex");
+      const resultDiv = document.getElementById("plaintextHexResult");
+
       if (user === c.paddedPlaintextHex.toLowerCase()) {
-        document.getElementById("plaintextHexResult").textContent = "Correct!";
-        document.getElementById("plaintextHexResult").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "plaintextHexResult"
-        ).textContent = `Correct answer: ${c.paddedPlaintextHex}`;
-        document.getElementById("plaintextHexResult").style.color = "blue";
-        document.getElementById("userPlaintextHex").value =
-          c.paddedPlaintextHex;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.paddedPlaintextHex}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
     document.getElementById("correctCipher").onclick = function () {
@@ -155,15 +184,19 @@ fetch("json/aes-dataset.json")
         .getElementById("userCipher")
         .value.trim()
         .toLowerCase();
+      const inputField = document.getElementById("userCipher");
+      const resultDiv = document.getElementById("result");
+
       if (user === c.ciphertextHex.toLowerCase()) {
-        document.getElementById("result").textContent = "Correct!";
-        document.getElementById("result").style.color = "green";
+        resultDiv.textContent = "Correct!";
+        resultDiv.style.color = "green";
+        inputField.style.borderColor = "#28a745";
+        inputField.style.color = "";
       } else {
-        document.getElementById(
-          "result"
-        ).textContent = `Correct answer: ${c.ciphertextHex}`;
-        document.getElementById("result").style.color = "blue";
-        document.getElementById("userCipher").value = c.ciphertextHex;
+        resultDiv.textContent = `Incorrect! The correct answer is - '${c.ciphertextHex}'`;
+        resultDiv.style.color = "red";
+        inputField.style.borderColor = "red";
+        inputField.style.color = "red";
       }
     };
   });
@@ -177,25 +210,86 @@ function showCaseDetails() {
   html += `<b>Mode:</b> ${c.mode}<br>`;
   html += `<b>Key Size:</b> ${c.keySize}<br>`;
   document.getElementById("caseDetails").innerHTML = html;
-  document.getElementById("userCipher").value = "";
-  document.getElementById("result").textContent = "";
+
+  // Clear all input boxes when a new test case is selected
+  clearAllInputs();
+}
+
+function clearAllInputs() {
+  // Clear all input fields
+  const inputFields = [
+    "userKeySize",
+    "userMode",
+    "userKey",
+    "userIV",
+    "userCTR",
+    "userPlaintext",
+    "userPlaintextHex",
+    "userCipher",
+  ];
+
+  inputFields.forEach((fieldId) => {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.value = "";
+      // Reset input field styling
+      field.style.borderColor = "";
+      field.style.color = "";
+    }
+  });
+
+  // Clear all result divs
+  const resultDivs = [
+    "keySizeResult",
+    "modeResult",
+    "keyResult",
+    "ivResult",
+    "ctrResult",
+    "plaintextResult",
+    "plaintextHexResult",
+    "result",
+  ];
+
+  resultDivs.forEach((divId) => {
+    const div = document.getElementById(divId);
+    if (div) {
+      div.textContent = "";
+      div.style.color = "";
+    }
+  });
+
+  // Clear notification area
+  const notification = document.getElementById("notification");
+  if (notification) {
+    notification.textContent = "";
+    notification.style.background = "";
+    notification.style.color = "";
+  }
 }
 
 document.getElementById("checkBtn").onclick = function () {
   const idx = document.getElementById("caseSelect").value;
   const c = window.aesCases[idx];
   const user = document.getElementById("userCipher").value.trim().toLowerCase();
+  const inputField = document.getElementById("userCipher");
+  const resultDiv = document.getElementById("result");
+
   if (!user) {
-    const resultDiv = document.getElementById("result");
     resultDiv.textContent = "Please enter your ciphertext.";
     resultDiv.style.color = "red";
+    inputField.style.borderColor = "red";
     return;
   }
+
   if (user === c.ciphertextHex.toLowerCase()) {
-    document.getElementById("result").textContent = "Correct!";
-    document.getElementById("result").style.color = "green";
+    resultDiv.textContent = "Correct!";
+    resultDiv.style.color = "green";
+    inputField.style.borderColor = "#28a745";
+    inputField.style.color = "";
   } else {
-    document.getElementById("result").textContent = "Incorrect. Try again!";
-    document.getElementById("result").style.color = "red";
+    resultDiv.textContent = `Incorrect! The correct answer is - '${c.ciphertextHex}'`;
+    resultDiv.style.color = "red";
+    inputField.style.borderColor = "red";
+    inputField.style.color = "red";
   }
 };
