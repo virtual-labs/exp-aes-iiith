@@ -1,126 +1,554 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css" />
+    <meta charset="UTF-8" />
+    <title>AES Simulation Demo</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/mobile-detection.js"></script>
   </head>
   <body>
-    <!-- Your code goes here-->
+    <div class="content" id="experiment-article-section-4-content">
+      <!-- Test Case Selection -->
+      <div
+        style="
+          background: #f0f8ff;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+          border: 2px solid #4a90e2;
+        "
+      >
+        <h3>🔐 AES Encryption Test Cases</h3>
+        <p>
+          Select a test case to work through the AES encryption process step by
+          step:
+        </p>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Select Test Case:</strong></td>
+            <td>
+              <select
+                id="caseSelect"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              ></select>
+            </td>
+          </tr>
+        </table>
+        <div
+          id="caseDetails"
+          style="
+            margin-top: 10px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+          "
+        ></div>
+      </div>
 
-    <p><b>PART I</b></p>
-    <form name="aestest">
-      <p>
-        Choose your mode of operation:
-        <select
-          id="select_mode"
-          name="select_mode"
-          onchange="selectMode();"
-          size="1"
+      <!-- PART I: Key Size and Mode -->
+      <h3>Part I: Key Size and Mode</h3>
+      <div
+        style="
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          style="
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+          "
         >
-          <option selected="selected" value="ecb">
-            Electronic Code Book (ECB)
-          </option>
-          <option value="cbc">Cipher Block Chaining</option>
-          <option value="ofb">Output Feedback</option>
-          <option value="ctr">Counter mode</option>
-        </select>
-      </p>
-      <hr />
-      <p><b>PART II</b></p>
-      <p></p>
-      <pre>Key size in bits: <select id="keySize" name="keySize"><option selected="selected" value="128">128</option><option value="192">192</option><option value="256">256</option></select></pre>
-      <p></p>
-      Plaintext:
-      <textarea cols="50" id="plainarea" name="plainarea" rows="6"></textarea>
-      <input
-        name="changePlainText"
-        onclick="nextPlainText()"
-        type="button"
-        value="Next Plaintext"
-      />
-      Key:
-      <textarea cols="50" id="keyarea" name="keyarea" rows="1"></textarea>
-      <input
-        name="changeKey"
-        onclick="nextKey()"
-        type="button"
-        value="Next Keytext"
-      />
-      <div id="ivtext">
-        IV:
-        <textarea cols="50" id="iv" name="iv" rows="1"></textarea>
-        <input
-          name="changeIV"
-          onclick="nextIV()"
-          type="button"
-          value="Next IV"
-        />
+          <p><strong>🔑 Key Configuration:</strong></p>
+          <p style="font-size: 14px; color: #666; margin: 5px 0">
+            Determine the appropriate key size and encryption mode for the
+            selected test case.
+          </p>
+        </div>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Key Size (bits):</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userKeySize"
+                placeholder="e.g. 128"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="correctKeySize"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                id="keySizeResult"
+                class="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Mode:</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userMode"
+                placeholder="e.g. CBC"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="correctMode"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                id="modeResult"
+                class="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div id="ctrtext">
-        CTR:
-        <textarea cols="50" id="ctr" name="ctr" rows="1"></textarea>
-        <input
-          name="changeCTR"
-          onclick="nextCTR()"
-          type="button"
-          value="Next CTR"
-        />
-      </div>
-      <div id="calculateXor">
-        <hr />
-        <p><b>PART III</b></p>
-        <p>Calculate XOR:</p>
-        <pre><textarea cols="50" id="num1" name="num1" rows="1"></textarea>
-     <textarea cols="50" id="num2" name="num2" rows="1"></textarea> <input name="calculateXOR" onclick="displayXOR()" type="button" value="Calculate XOR"/>
-<p>XOR: <textarea cols="50" id="xor" name="xor" rows="1"></textarea></p></pre>
-        <p></p>
-      </div>
-      <hr />
-      <p><b>PART IV</b></p>
-      <table>
-        <tbody>
-          <tr>
-            <td>Key in hex:</td>
-            <td>
-              <input name="key" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>Plaintext in hex:</td>
-            <td>
-              <input name="plaintext" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>Ciphertext in hex:</td>
-            <td>
-              <input name="ciphertext" size="66" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input onclick="doEncryption()" type="button" value="Encrypt" />
-              <input onclick="doDecryption()" type="button" value="Decrypt" />
-              <input type="reset" value="Clear" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-    <hr />
-    <p><b>PART V</b></p>
-    <p>Enter your answer here:</p>
-    <p>
-      <input id="userans" size="65" type="text" />
-      <input onclick="checkAnswer();" type="button" value="Check Answer!" />
-    </p>
-    <div id="notification" style="color: green; font-weight: bold"></div>
 
-    <!-- Add JS at the bottom of HTML file -->
-    <script src="js/aes-enc.js" type="application/javascript"></script>
-    <script src="js/aes-dec.js" type="application/javascript"></script>
-    <script src="js/aes-test.js" type="application/javascript"></script>
-    <script src="js/aes.js" type="application/javascript"></script>
+      <!-- PART II: Key and IV/CTR -->
+      <h3>Part II: Key and IV/CTR</h3>
+      <div
+        style="
+          background: #fff3cd;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          style="
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+          "
+        >
+          <p><strong>🗝️ Encryption Parameters:</strong></p>
+          <p style="font-size: 14px; color: #666; margin: 5px 0">
+            Enter the encryption key and initialization vector (IV) or counter
+            (CTR) values based on the selected mode.
+          </p>
+        </div>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Key (hex):</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userKey"
+                placeholder="Enter key in hex"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="correctKey"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                id="keyResult"
+                class="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+        </table>
+        <div id="ivSection">
+          <table style="width: 100%">
+            <tr>
+              <td><strong>IV (hex):</strong></td>
+              <td>
+                <input
+                  type="text"
+                  id="userIV"
+                  placeholder="Enter IV in hex"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                  "
+                />
+              </td>
+              <td>
+                <input
+                  type="button"
+                  id="correctIV"
+                  value="Check your answer"
+                  style="
+                    background: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div
+                  id="ivResult"
+                  class="result"
+                  style="margin: 5px 0; font-weight: bold"
+                ></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="ctrSection">
+          <table style="width: 100%">
+            <tr>
+              <td><strong>CTR (hex):</strong></td>
+              <td>
+                <input
+                  type="text"
+                  id="userCTR"
+                  placeholder="Enter CTR in hex"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                  "
+                />
+              </td>
+              <td>
+                <input
+                  type="button"
+                  id="correctCTR"
+                  value="Check your answer"
+                  style="
+                    background: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div
+                  id="ctrResult"
+                  class="result"
+                  style="margin: 5px 0; font-weight: bold"
+                ></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- PART III: Plaintext -->
+      <h3>Part III: Plaintext</h3>
+      <div
+        style="
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          style="
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+          "
+        >
+          <p><strong>📝 Input Text:</strong></p>
+          <p style="font-size: 14px; color: #666; margin: 5px 0">
+            Enter the plaintext that will be encrypted using the AES algorithm.
+          </p>
+        </div>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Plaintext:</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userPlaintext"
+                placeholder="Enter plaintext"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="correctPlaintext"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                id="plaintextResult"
+                class="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- PART IV: Plaintext Hex -->
+      <h3>Part IV: Plaintext Hex</h3>
+      <div
+        style="
+          background: #fff3cd;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          style="
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+          "
+        >
+          <p><strong>🔢 Hexadecimal Conversion:</strong></p>
+          <p style="font-size: 14px; color: #666; margin: 5px 0">
+            Convert the plaintext to hexadecimal format with appropriate padding
+            for block cipher requirements.
+          </p>
+        </div>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Plaintext (hex, padded):</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userPlaintextHex"
+                placeholder="Enter padded plaintext in hex"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="correctPlaintextHex"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                id="plaintextHexResult"
+                class="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- PART V: Ciphertext -->
+      <h3>Part V: Ciphertext</h3>
+      <div
+        style="
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          style="
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+          "
+        >
+          <p><strong>🔐 Final Encryption Result:</strong></p>
+          <p style="font-size: 14px; color: #666; margin: 5px 0">
+            Enter the final encrypted ciphertext in hexadecimal format after
+            applying the AES algorithm.
+          </p>
+        </div>
+        <table style="width: 100%">
+          <tr>
+            <td><strong>Ciphertext (hex):</strong></td>
+            <td>
+              <input
+                type="text"
+                id="userCipher"
+                placeholder="Enter ciphertext in hex"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                "
+              />
+            </td>
+            <td>
+              <input
+                type="button"
+                id="checkBtn"
+                value="Check Answer"
+                style="
+                  background: #007bff;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                  margin-right: 5px;
+                "
+              />
+              <input
+                type="button"
+                id="correctCipher"
+                value="Check your answer"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div
+                class="result"
+                id="result"
+                style="margin: 5px 0; font-weight: bold"
+              ></div>
+            </td>
+          </tr>
+        </table>
+
+        <div
+          id="notification"
+          style="
+            padding: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
   </body>
 </html>

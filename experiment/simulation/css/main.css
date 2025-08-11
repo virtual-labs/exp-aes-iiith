@@ -1,1 +1,258 @@
-/* You CSS goes in here */
+/* AES Simulation Styles - Based on Message Authentication Codes Design */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+  margin: 20px;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  font-size: 14px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Alert warning styling */
+.alert-warning {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 18px auto 18px auto;
+  color: #b26a00;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  padding: 12px 18px;
+  max-width: 600px;
+}
+
+h3 {
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  margin-top: 30px;
+  font-size: 1.1em;
+}
+
+h4 {
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+h5 {
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 10px 0;
+  width: 100%;
+}
+
+td {
+  padding: 8px;
+  vertical-align: top;
+}
+
+td:first-child {
+  font-weight: bold;
+  min-width: 200px;
+  width: 20%;
+}
+
+td:nth-child(2) {
+  width: 60%;
+}
+
+td:last-child {
+  width: 20%;
+  text-align: right;
+}
+
+input[type="text"],
+input[type="button"],
+select,
+textarea {
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="text"],
+select,
+textarea {
+  padding: 8px;
+  font-size: 1em;
+}
+
+/* Success state styling */
+input[type="text"].success,
+input[type="text"][style*="border-color: #28a745"] {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+}
+
+/* Error state styling */
+input[type="text"].error,
+input[type="text"][style*="border-color: red"] {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+input[type="button"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px;
+  font-size: 0.9em;
+}
+
+input[type="button"]:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific button colors */
+input[type="button"][style*="background: #28a745"] {
+  background: #28a745 !important;
+}
+
+input[type="button"][style*="background: #28a745"]:hover {
+  background: #1e7e34 !important;
+}
+
+input[type="button"][style*="background: #007bff"] {
+  background: #007bff !important;
+}
+
+input[type="button"][style*="background: #007bff"]:hover {
+  background: #0056b3 !important;
+}
+
+.result {
+  min-height: 20px;
+  padding: 5px 0;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#notification {
+  min-height: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+}
+
+/* Enhanced styling for informational boxes */
+div[style*="background: #f0f8ff"] {
+  border: 1px solid #4a90e2;
+  animation: fadeIn 0.5s ease;
+}
+
+div[style*="background: #f8f9fa"] {
+  border: 1px solid #dee2e6;
+}
+
+div[style*="background: #fff3cd"] {
+  border: 1px solid #ffeaa7;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 600px) {
+  body {
+    font-size: 13px !important;
+    margin: 10px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 1em !important;
+  }
+
+  .result {
+    font-size: 0.85em !important;
+    word-break: break-word;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+
+  td:first-child {
+    min-width: 120px;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    width: 100% !important;
+    font-size: 1.1em !important;
+    box-sizing: border-box !important;
+    padding: 12px 8px !important;
+    margin-bottom: 10px !important;
+    border-radius: 8px !important;
+    min-height: 40px !important;
+  }
+
+  input[type="button"] {
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+    font-size: 1em !important;
+    padding: 12px 0 !important;
+    min-height: 44px !important;
+    border-radius: 8px !important;
+    margin-top: 5px !important;
+  }
+
+  td {
+    display: block;
+    width: 100% !important;
+    padding: 5px 0;
+  }
+
+  td:last-child {
+    text-align: left;
+  }
+}
